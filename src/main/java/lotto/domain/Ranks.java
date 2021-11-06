@@ -31,10 +31,11 @@ public class Ranks {
     }
 
     public long totalRewards() {
-        return countPlace(new Rank(Rank.FIRST_PLACE_MATCH_COUNT)) * Constants.REWARD_1ST +
-                countPlace(new Rank(Rank.SECOND_PLACE_MATCH_COUNT)) * Constants.REWARD_2ND +
-                countPlace(new Rank(Rank.THIRD_PLACE_MATCH_COUNT)) * Constants.REWARD_3RD +
-                countPlace(new Rank(Rank.FOURTH_PLACE_MATCH_COUNT)) * Constants.REWARD_4TH;
+//        return countPlace(new Rank(Rank.FIRST_PLACE_MATCH_COUNT)) * Constants.REWARD_1ST +
+//                countPlace(new Rank(Rank.SECOND_PLACE_MATCH_COUNT)) * Constants.REWARD_2ND +
+//                countPlace(new Rank(Rank.THIRD_PLACE_MATCH_COUNT)) * Constants.REWARD_3RD +
+//                countPlace(new Rank(Rank.FOURTH_PLACE_MATCH_COUNT)) * Constants.REWARD_4TH;
+        return 0;
     }
 
     public double earningRatio() {
@@ -44,10 +45,10 @@ public class Ranks {
     public void print() {
         ResultView.print(Constants.MSG_OUTPUT_LOTTO_RESULT);
         ResultView.print(Constants.MSG_OUTPUT_LINE_SEPARATOR);
-        ResultView.print(Constants.MSG_OUTPUT_4TH_PREFIX + this.countPlace(new Rank(Rank.FOURTH_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
-        ResultView.print(Constants.MSG_OUTPUT_3RD_PREFIX + this.countPlace(new Rank(Rank.THIRD_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
-        ResultView.print(Constants.MSG_OUTPUT_2ND_PREFIX + this.countPlace(new Rank(Rank.SECOND_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
-        ResultView.print(Constants.MSG_OUTPUT_1ST_PREFIX + this.countPlace(new Rank(Rank.FIRST_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
+//        ResultView.print(Constants.MSG_OUTPUT_4TH_PREFIX + this.countPlace(new Rank(Rank.FOURTH_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
+//        ResultView.print(Constants.MSG_OUTPUT_3RD_PREFIX + this.countPlace(new Rank(Rank.THIRD_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
+//        ResultView.print(Constants.MSG_OUTPUT_2ND_PREFIX + this.countPlace(new Rank(Rank.SECOND_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
+//        ResultView.print(Constants.MSG_OUTPUT_1ST_PREFIX + this.countPlace(new Rank(Rank.FIRST_PLACE_MATCH_COUNT)) + Constants.MSG_OUTPUT_SUFFIX);
         ResultView.print(Constants.MSG_OUTPUT_YIELD_PREFIX + this.earningRatio() + Constants.MSG_OUTPUT_YIELD_SUFFIX);
     }
 }

@@ -20,6 +20,22 @@ public class LottoNumber {
         this.number = number;
     }
 
+    public LottoNumber(String input) {
+        if(!isNumber(input)) throw new NumberFormatException("1~45까지 숫자만 입력 가능합니다");
+        int number = Integer.parseInt(input);
+        if (number < MIN_NUMBER || number > MAX_NUMBER) throw new IllegalArgumentException("1부터 45 사이의 숫자만 가능합니다.");
+        this.number = number;
+    }
+
+    private boolean isNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch(NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

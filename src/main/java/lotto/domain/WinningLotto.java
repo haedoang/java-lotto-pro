@@ -1,7 +1,11 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static lotto.common.Constants.NUMBER_SEPARATOR;
 
 /**
  * packageName : lotto.domain
@@ -23,6 +27,25 @@ public class WinningLotto {
         this.lottoNumberList = new ArrayList<>(lottoNumberList);
         this.bonus = bonus;
     }
+
+    public WinningLotto(String input, LottoNumber bonus) {
+        if (input == null) throw new NullPointerException("null값이 올 수 없습니다.");
+        if (input.isEmpty()) throw new IllegalArgumentException("빈 값은 허용되지 않습니다.");
+        String[] numbers = input.split(NUMBER_SEPARATOR);
+        if (numbers.length != Lotto.BALL_CNT) throw new IllegalArgumentException("숫자 개수가 올바르지 않습니다.");
+        if (!isLottoNumber(numbers)) throw new IllegalArgumentException("입력값이 올바르지 않습니다");
+        this.lottoNumberList = new ArrayList<>(Arrays.stream(numbers).map(number -> new LottoNumber(Integer.parseInt(number.trim()))).collect(Collectors.toList()));
+        this.bonus = bonus;
+    }
+
+    private boolean isLottoNumber(String[] numbers) {
+        try {
+            return Arrays.stream(numbers).allMatch(number -> Integer.parseInt(number.trim()) >= LottoNumber.MIN_NUMBER && Integer.parseInt(number.trim()) <= LottoNumber.MAX_NUMBER);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
 
     public boolean has(LottoNumber number) {
         return this.lottoNumberList.contains(number);

@@ -33,6 +33,10 @@ public class Lottos {
         return new Ranks(lottoList.stream().map(lotto -> lotto.getRank(winning)).collect(Collectors.toList()));
     }
 
+    public RankEnums getResults(WinningLotto winning) {
+        return new RankEnums(lottoList.stream().map(lotto -> lotto.getRank(winning)).collect(Collectors.toList()));
+    }
+
     public void print() {
         this.lottoList.stream().forEach(System.out::println);
     }
