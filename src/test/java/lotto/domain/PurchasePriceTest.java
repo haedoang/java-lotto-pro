@@ -52,10 +52,10 @@ public class PurchasePriceTest {
         //GIVEN
         Lottos lottos = new Lottos(Arrays.asList(firstPlaceLotto, thirdPlaceLotto), new PurchasePrice(2000));
         //WHEN
-        RankEnums ranks = lottos.getResults(winningLotto);
+        Ranks ranks = lottos.getResults(winningLotto);
         //THEN
-        assertThat(ranks.countPlace(RankEnum.FIRST)).isEqualTo(1);
-        assertThat(ranks.countPlace(RankEnum.THIRD)).isEqualTo(1);
+        assertThat(ranks.countPlace(Rank.FIRST)).isEqualTo(1);
+        assertThat(ranks.countPlace(Rank.THIRD)).isEqualTo(1);
     }
 
     @Test

@@ -15,20 +15,20 @@ import static org.assertj.core.api.Assertions.assertThat;
  * description : 랭크Enum Test
  */
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class RankEnumTest {
+public class RankTest {
 
     @Test
     @DisplayName("enum을 활용한 로또 당첨 개수 구하기")
     public void T1_countOfMatch() {
         //THEN
-        assertThat(RankEnum.FIRST.getCountOfMatch()).isEqualTo(6);
-        assertThat(RankEnum.SECOND.getCountOfMatch()).isEqualTo(RankEnum.THIRD.getCountOfMatch());
+        assertThat(Rank.FIRST.getCountOfMatch()).isEqualTo(6);
+        assertThat(Rank.SECOND.getCountOfMatch()).isEqualTo(Rank.THIRD.getCountOfMatch());
     }
 
     @Test
     @DisplayName("enum을 활용한 로또 당첨 금액 구하기")
     public void T2_getWinningMoney() {
         //THEN
-        assertThat(RankEnum.FIRST.getWinningMoney()).isEqualTo(2_000_000_000);
+        assertThat(Rank.FIRST.getWinningMoney()).isEqualTo(2_000_000_000);
     }
 }

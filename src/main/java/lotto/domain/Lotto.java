@@ -38,7 +38,7 @@ public class Lotto {
         lottoNumberList = new ArrayList<>(Arrays.stream(numbers).map(number -> new LottoNumber(Integer.parseInt(number.trim()))).collect(Collectors.toList()));
     }
 
-    private boolean isLottoNumber(String[] numbers) {
+    public static boolean isLottoNumber(String[] numbers) {
         try {
             return Arrays.stream(numbers).allMatch(number -> Integer.parseInt(number.trim()) >= LottoNumber.MIN_NUMBER && Integer.parseInt(number.trim()) <= LottoNumber.MAX_NUMBER);
         } catch (NumberFormatException nfe) {
@@ -58,8 +58,8 @@ public class Lotto {
         return (int) this.lottoNumberList.stream().filter(winning::has).count();
     }
 
-    public RankEnum getRank(WinningLotto winning) {
-        return RankEnum.valueOf(this.match(winning), this.lottoNumberList.stream().anyMatch(lottoNumber -> winning.isBonus(lottoNumber)));
+    public Rank getRank(WinningLotto winning) {
+        return Rank.valueOf(this.match(winning), this.lottoNumberList.stream().anyMatch(lottoNumber -> winning.isBonus(lottoNumber)));
     }
 
 

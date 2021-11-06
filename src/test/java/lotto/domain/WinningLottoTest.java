@@ -41,32 +41,32 @@ public class WinningLottoTest {
     @DisplayName("1등 당첨 테스트")
     public void T1_firstPlace() {
         WinningLotto winning = new WinningLotto(lottoNumberList, new LottoNumber(this.bonusNumber));
-        RankEnum rankEnum = lottoPlace1.getRank(winning);
-        assertThat(rankEnum).isEqualTo(RankEnum.valueOf(6, false));
+        Rank rank = lottoPlace1.getRank(winning);
+        assertThat(rank).isEqualTo(Rank.valueOf(6, false));
     }
 
     @Test
     @DisplayName("2등 당첨 테스트")
     public void T2_secondPlace() {
         WinningLotto winning = new WinningLotto(lottoNumberList, new LottoNumber(bonusNumber));
-        RankEnum rankEnum = lottoPlace2.getRank(winning);
-        assertThat(rankEnum).isEqualTo(RankEnum.valueOf(5, true));
+        Rank rank = lottoPlace2.getRank(winning);
+        assertThat(rank).isEqualTo(Rank.valueOf(5, true));
     }
 
     @Test
     @DisplayName("3등 당첨 테스트")
     public void T3_thirdPlace() {
         WinningLotto winning = new WinningLotto(lottoNumberList, new LottoNumber(bonusNumber));
-        RankEnum rankEnum = lottoPlace3.getRank(winning);
-        assertThat(rankEnum).isEqualTo(RankEnum.valueOf(5, false));
+        Rank rank = lottoPlace3.getRank(winning);
+        assertThat(rank).isEqualTo(Rank.valueOf(5, false));
     }
 
     @Test
     @DisplayName("4등 당첨 테스트")
     public void T4_fourthPlace() {
         WinningLotto winning = new WinningLotto(lottoNumberList, new LottoNumber(bonusNumber));
-        RankEnum rankEnum = lottoPlace4.getRank(winning);
-        assertThat(rankEnum).isEqualTo(RankEnum.valueOf(4, true));
+        Rank rank = lottoPlace4.getRank(winning);
+        assertThat(rank).isEqualTo(Rank.valueOf(4, true));
     }
 
 
@@ -74,16 +74,16 @@ public class WinningLottoTest {
     @DisplayName("5등 당첨 테스트")
     public void T5_fifthPlace() {
         WinningLotto winning = new WinningLotto(lottoNumberList, new LottoNumber(bonusNumber));
-        RankEnum rankEnum = lottoPlace5.getRank(winning);
-        assertThat(rankEnum).isEqualTo(RankEnum.valueOf(3, true));
+        Rank rank = lottoPlace5.getRank(winning);
+        assertThat(rank).isEqualTo(Rank.valueOf(3, true));
     }
 
     @Test
     @DisplayName("꽝 테스트 ")
     public void T6_bankruptcy() {
         WinningLotto winning = new WinningLotto(lottoNumberList, new LottoNumber(bonusNumber));
-        RankEnum rankEnum = bankruptcy.getRank(winning);
-        assertThat(rankEnum).isEqualTo(RankEnum.valueOf(2, true));
+        Rank rank = bankruptcy.getRank(winning);
+        assertThat(rank).isEqualTo(Rank.valueOf(2, true));
     }
 
 

@@ -2,9 +2,7 @@ package lotto.domain;
 
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,10 +32,10 @@ public class LottosTest {
     @DisplayName("로또리스트에서 결과 구하기")
     public void T1_lottos() {
         Lottos lottos = new Lottos(Arrays.asList(firstPlaceLotto, thirdPlaceLotto));
-        RankEnums rankEnums = lottos.getResults(winningLotto);
+        Ranks ranks = lottos.getResults(winningLotto);
 
-        assertThat(rankEnums.countPlace(RankEnum.FIRST)).isEqualTo(1);
-        assertThat(rankEnums.countPlace(RankEnum.THIRD)).isEqualTo(1);
+        assertThat(ranks.countPlace(Rank.FIRST)).isEqualTo(1);
+        assertThat(ranks.countPlace(Rank.THIRD)).isEqualTo(1);
     }
 
 }

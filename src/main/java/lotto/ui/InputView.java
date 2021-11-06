@@ -1,6 +1,7 @@
 package lotto.ui;
 
 import lotto.common.Constants;
+import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
@@ -22,13 +23,14 @@ public class InputView {
     }
 
     public static Object readLine(InputType type, String memorizedInput) {
-        System.out.println(type.isPurchase() ? Constants.MSG_INPUT_PURCHASE_PRICE :
-                type.isNumber() ? Constants.MSG_INPUT_LAST_WINNING_NUMBERS :
-                        type.isBonus() ? Constants.MSG_INPUT_BONUMS_NUMBER : "");
+        ResultView.print(type);
         try {
             String input = scanner.nextLine();
             if (type.isPurchase()) return new PurchasePrice(input);
-            if (type.isNumber()) return readLine(InputType.BONUS, input);
+            if (type.isNumber() && !Lotto.isLottoNumber(input.split(Constants.NUMBER_SEPARATOR)))
+                throw new IllegalArgumentException("숫자가 올바르지 않습니다.");
+            if (type.isNumber() && Lotto.isLottoNumber(input.split(Constants.NUMBER_SEPARATOR)))
+                return readLine(InputType.BONUS, input);
             if (type.isBonus()) return new WinningLotto(memorizedInput, new LottoNumber(input));
         } catch (Exception e) {
             ResultView.print(e.getMessage());
