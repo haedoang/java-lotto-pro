@@ -1,7 +1,6 @@
 package lotto.ui;
 
 import lotto.common.Constants;
-import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
@@ -32,7 +31,7 @@ public class InputView {
             if (type.isNumber()) return readLine(InputType.BONUS, input);
             if (type.isBonus()) return new WinningLotto(memorizedInput, new LottoNumber(input));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            ResultView.print(e.getMessage());
             return readLine(type, memorizedInput);
         }
         return null;

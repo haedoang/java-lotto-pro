@@ -26,4 +26,7 @@ public class Constants {
 
     public static final String NUMBER_SEPARATOR = ",";
 
+    public static final String CONTAINER_PREFIX = "[";
+    public static final String CONTAINER_SUFFIX = "]";
+
 }

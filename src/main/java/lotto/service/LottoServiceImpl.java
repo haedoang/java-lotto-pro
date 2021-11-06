@@ -20,12 +20,8 @@ public class LottoServiceImpl implements LottoService {
         Lottos lottos = price.buyLottery();
         lottos.print();
         WinningLotto winning = (WinningLotto) InputView.readLine(InputType.NUMBER, null);
-        //Ranks results = lottos.getResults(winning);
-//
         RankEnums rankEnums = lottos.getResults(winning);
         rankEnums.print();
-//
-//        results.print();
     }
 
 

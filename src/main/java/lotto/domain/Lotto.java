@@ -1,6 +1,8 @@
 package lotto.domain;
 
 
+import lotto.common.Constants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +15,7 @@ import static lotto.common.Constants.NUMBER_SEPARATOR;
  * fileName : Lotto
  * author : haedoang
  * date : 2021-11-05
- * description :
+ * description : 로또 클래스
  */
 public class Lotto {
     public static final int BALL_CNT = 6;
@@ -52,17 +54,8 @@ public class Lotto {
         return this.lottoNumberList.contains(number);
     }
 
-    private int match(Lotto winning) {
-        return (int) winning.lottoNumberList.stream().filter(this.lottoNumberList::contains).count();
-    }
-
     private int match(WinningLotto winning) {
         return (int) this.lottoNumberList.stream().filter(winning::has).count();
-    }
-
-
-    public Rank getRank(Lotto winning) {
-        return new Rank(match(winning));
     }
 
     public RankEnum getRank(WinningLotto winning) {
@@ -72,11 +65,11 @@ public class Lotto {
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("[");
+        StringBuffer sb = new StringBuffer(Constants.CONTAINER_PREFIX);
         for (int i = 0; i < this.lottoNumberList.size(); i++) {
             sb.append(lottoNumberList.get(i)).append(i == this.lottoNumberList.size() - 1 ? "" : " ");
         }
-        sb.append("]");
+        sb.append(Constants.CONTAINER_SUFFIX);
         return sb.toString();
     }
 }
