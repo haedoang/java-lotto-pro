@@ -56,9 +56,19 @@ public class Lotto {
         return (int) winning.lottoNumberList.stream().filter(this.lottoNumberList::contains).count();
     }
 
+    private int match(WinningLotto winning) {
+        return (int) this.lottoNumberList.stream().filter(winning::has).count();
+    }
+
+
     public Rank getRank(Lotto winning) {
         return new Rank(match(winning));
     }
+
+    public RankEnum getRank(WinningLotto winning) {
+        return RankEnum.valueOf(this.match(winning), this.lottoNumberList.stream().anyMatch(lottoNumber -> winning.isBonus(lottoNumber)));
+    }
+
 
     @Override
     public String toString() {
