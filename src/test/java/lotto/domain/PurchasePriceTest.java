@@ -62,4 +62,16 @@ public class PurchasePriceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("구매수량이 일치하지 않습니다.");
     }
+
+    @Test
+    @DisplayName("수동 구매 수량 테스트")
+    public void T05_manualCount() {
+        //GIVEN
+        PurchasePrice purchasePrice = PurchasePrice.valueOf(5000);
+        int possibleToBuy = 10;
+        int impossibleToBuy = 20;
+        //THEN
+        assertThat(purchasePrice.isAbleToBuy(possibleToBuy)).isTrue();
+        assertThat(purchasePrice.isAbleToBuy(impossibleToBuy)).isTrue();
+    }
 }

@@ -1,10 +1,13 @@
 package lotto.service;
 
+import lotto.common.utils.StringUtil;
 import lotto.domain.*;
-import lotto.ui.InputType;
 import lotto.ui.InputView;
 import lotto.ui.Message;
 import lotto.ui.ResultView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * packageName : lotto.service
@@ -16,7 +19,6 @@ import lotto.ui.ResultView;
 public class LottoService {
     public void start() {
         PurchasePrice price = this.purchase();
-        price.print();
         Lottos lottos = this.getLottos(price);
         lottos.print();
         Lotto winning = this.inputWinningNumber();
@@ -25,8 +27,7 @@ public class LottoService {
         results.print();
     }
 
-
-    public PurchasePrice purchase() {
+    private PurchasePrice purchase() {
         try {
             ResultView.print(Message.PURCHASE.getMessage());
             return new PurchasePrice(InputView.readLine());
@@ -49,8 +50,41 @@ public class LottoService {
     }
 
 
-    public Lottos getLottos(PurchasePrice price) {
-        return price.buyLottery();
+    private Lottos getLottos(PurchasePrice price) {
+        int manualCount = this.inputManualLottoCount(price);
+        List<Lotto> lottoList = this.createManualLottoList(manualCount);
+        lottoList.addAll(price.buyLottoAuto(manualCount));
+        return new Lottos(lottoList);
+    }
+
+    private List<Lotto> createManualLottoList(int manualCount) {
+        List<Lotto> lottoList = new ArrayList<>();
+        ResultView.print(Message.MANUAL_NUMBER.getMessage());
+        for(int i = 0; i < manualCount; i++) {
+            lottoList.add(this.inputManualLottoNumber());
+        }
+        return lottoList;
+    }
+
+    private Lotto inputManualLottoNumber() {
+        try {
+            return new Lotto(InputView.readLine());
+        } catch (Exception e) {
+            ResultView.print(e.getMessage());
+            return inputManualLottoNumber();
+        }
+    }
+
+    private int inputManualLottoCount(PurchasePrice price) {
+        try {
+            ResultView.print(Message.MANUAL_COUNT.getMessage());
+            int count = StringUtil.parseNumber(InputView.readLine());
+            if(!price.isAbleToBuy(count)) throw new IllegalArgumentException("구매 가능한 수량을 초과하였습니다.");
+            return count;
+        } catch (Exception e) {
+            ResultView.print(e.getMessage());
+            return inputManualLottoCount(price);
+        }
     }
 
     public Lotto inputWinningNumber() {
