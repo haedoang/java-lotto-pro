@@ -36,9 +36,8 @@ public class Lotto {
     }
 
     public Lotto(String input) {
-        if (!Optional.ofNullable(input).isPresent() || StringUtil.isStringEmpty(input))
-            throw new CustomEmptyException();
-        List<LottoNumber> inputLottoList = Arrays.stream(input.split(NUMBER_SEPARATOR)).map(LottoNumber::valueOf).collect(Collectors.toList());
+        String existStr = Optional.ofNullable(input).orElseThrow(CustomEmptyException::new);
+        List<LottoNumber> inputLottoList = Arrays.stream(existStr.split(NUMBER_SEPARATOR)).map(LottoNumber::valueOf).collect(Collectors.toList());
         this.lottoNumberList = new ArrayList<>(validate(inputLottoList));
     }
 
