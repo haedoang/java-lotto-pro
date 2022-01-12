@@ -12,9 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * date : 2022/01/12
  * description :
  */
-
-//- [ ] "1,2"을 ,로 split 했을 때 1과 2로 잘 분리되는지 확인하는 학습 테스트를 구현한다.
-// - [ ] "1"을 ,로 split 했을 때 1만을 포함하는 배열이 반환되는지에 대한 학습 테스트를 구현한다.
 public class StringTest {
     @Test
     @DisplayName("String 클래스의 split은 문자열을 separator를 기준으로 분리할 수 있다.")
@@ -44,5 +41,18 @@ public class StringTest {
         // then
         assertThat(actual).hasSize(1);
         assertThat(actual).contains("1");
+    }
+
+    @Test
+    @DisplayName("String 클래스의 substring은 문자열을 자를 수 있다.")
+    public void substringTest() {
+        // given
+        String given = "(1,2)";
+
+        // when
+        final String actual = given.substring(given.indexOf("(") + 1, given.indexOf(")"));
+
+        // then
+        assertThat(actual).isEqualTo("1,2");
     }
 }
