@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 /**
  * packageName : study
@@ -54,5 +56,28 @@ public class StringTest {
 
         // then
         assertThat(actual).isEqualTo("1,2");
+    }
+
+    @Test
+    @DisplayName("String 클래스의 charAt() 메소드는 특정 위치의 문자를 반환한다.")
+    public void charAtTest() {
+        // given
+        String given = "abc";
+
+        // then
+        assertAll(
+                () -> assertThat(given.charAt(0)).isEqualTo('a' ),
+                () -> assertThat(given.charAt(1)).isEqualTo('b' ),
+                () -> assertThat(given.charAt(2)).isEqualTo('c' )
+        );
+    }
+
+    @Test
+    @DisplayName("String 클래스의 charAt() 메소드는 위치 값을 벗어나면 예외를 반환한다.")
+    public void charAtException() {
+        // given
+        String given = "abc";
+
+        assertThatThrownBy(() -> given.charAt(Integer.MAX_VALUE)).isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
