@@ -10,6 +10,8 @@ package study;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,5 +30,16 @@ public class SetTest {
 
         // then
         assertThat(numberSet).hasSize(5);
+    }
+
+    @DisplayName("Set 클래스의 contains() 메소드로 값의 존재 여부를 확인할 수 있다.")
+    @ParameterizedTest(name = "candidate : {arguments}")
+    @ValueSource(ints = {1, 2, 3, 4})
+    public void containsTest(int candidate) {
+        // given
+        Set<Integer> numberSet = new HashSet<>(newArrayList(1, 2, 3, 4));
+
+        // then
+        assertThat(numberSet.contains(candidate)).isTrue();
     }
 }
