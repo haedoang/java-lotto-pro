@@ -9,19 +9,19 @@ import java.util.Objects;
  * date : 2022/01/15
  * description :
  */
-public class Ball {
+public class LottoNumber {
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
 
     private final int number;
 
-    private Ball(int number) {
+    private LottoNumber(int number) {
         validate(number);
         this.number = number;
     }
 
-    public static Ball of(int number) {
-        return new Ball(number);
+    public static LottoNumber of(int number) {
+        return new LottoNumber(number);
     }
 
     private void validate(int number) {
@@ -33,9 +33,9 @@ public class Ball {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Ball)) return false;
-        Ball ball = (Ball) o;
-        return number == ball.number;
+        if (!(o instanceof LottoNumber)) return false;
+        LottoNumber lottoNumber = (LottoNumber) o;
+        return number == lottoNumber.number;
     }
 
     @Override
