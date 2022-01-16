@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -13,12 +12,13 @@ import java.util.List;
  */
 public class Lotto {
     public static final int BALL_COUNT = 6;
+    public static final int LOTTO_PRICE = 1_000;
 
     private final List<LottoNumber> lottoNumbers;
 
     private Lotto(List<LottoNumber> lottoNumberList) {
         validate(lottoNumberList);
-        this.lottoNumbers = new ArrayList(lottoNumberList);
+        this.lottoNumbers = lottoNumberList;
     }
 
     public static Lotto of(List<LottoNumber> lottoNumberList) {
@@ -41,5 +41,4 @@ public class Lotto {
     public boolean contains(LottoNumber lottoNumber) {
         return this.lottoNumbers.contains(lottoNumber);
     }
-
 }
