@@ -32,8 +32,12 @@ public class LottoNumber {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof LottoNumber)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof LottoNumber)) {
+            return false;
+        }
         LottoNumber lottoNumber = (LottoNumber) o;
         return number == lottoNumber.number;
     }
